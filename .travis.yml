@@ -16,7 +16,7 @@ deploy:
     secure: "$AWS_SECRET_KEY"
   bucket: "react-docker-test"
   skip_cleanup: true
-  local_dir: build
+  local_dir: ./build
   acl: public_read
   on:
     branch: master
