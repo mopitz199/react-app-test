@@ -8,3 +8,15 @@ before_install:
 
 script:
   - docker run -e CI=true mopitz199/react-app-test npm run test -- --coverage
+
+deploy:
+  provider: s3
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: "$AWS_SECRET_KEY"
+  local_dir: build
+  bucket: "react-docker-test"
+  skip_cleanup: true
+  acl: public_read
+  on:
+    branch: master
