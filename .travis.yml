@@ -10,13 +10,14 @@ script:
   - docker run -e CI=true mopitz199/react-app-test-prod
 
 deploy:
-  provider: s3
+  provider: elasticbeanstalk
   access_key_id: $AWS_ACCESS_KEY
   secret_access_key:
     secure: "$AWS_SECRET_KEY"
-  bucket: "react-docker-test"
-  skip_cleanup: true
-  local_dir: /app/build
-  acl: public_read
+  region: "us-east-1"
+  app: "economicapp-frontend"
+  env: "EconomicappFrontend-env"
+  bucket_name: "elasticbeanstalk-us-east-1-960622128562"
+  bucket_path: "economicapp-frontend"
   on:
     branch: master
